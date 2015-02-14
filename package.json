@@ -1,0 +1,21 @@
+{
+  "name": "python.js",
+  "version": "1.0.0",
+  "description": "Pythonic javascript.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/nodeunit/bin/nodeunit tests.js"
+  },
+  "author": "Ander Martinez",
+  "license": "ISC",
+  "repository" :{
+    "type" : "git",
+    "url" : "http://github.com/basaundi/python.js.git"
+  },
+  "devDependencies": {
+    "nodeunit": "^0.9.0"
+  }
+}
