@@ -1,15 +1,29 @@
 
-require('./lib/0_type.js');
+function code(path){
+  return require('fs').readFileSync('./lib/' + path, 'utf8');
+}
+eval(code('0_type.js'));
 
-exports.testSomething = function(test){
+exports.testType = function(test){
     var A = type('A', [], {}); // Empty type
-    test.expect(1);
-    test.ok(true, "this assertion should pass");
-    test.done();
-};
-
-exports.testSomethingElse = function(test){
-    test.ok(false, "this assertion should fail");
+    test.ok(A);
+    var B = type('B', [], {
+        __init__: function(self, v){
+          self.v = v;
+        },
+        getValue: function(self){
+          return self.v;
+        }
+    })
+    var b = B(7);
+    test.equal(b.getValue(), 7, "getValue");
+    var C = type('C', [B], {
+        __init__: function(self, v){
+          self.v = v * 2;
+        }
+    })
+    var c = C(4);
+    test.equal(c.getValue(), 8);
     test.done();
 };
 
